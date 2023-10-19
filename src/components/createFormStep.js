@@ -1,7 +1,8 @@
-// universal component for step form
+import createContainer from "./createContainer";
+
+// Universal component for step form
 const createFormStep = (stepNumber, stepDescription, stepTitle) => {
-    const stepContainer = document.createElement("div");
-    stepContainer.className = "flex";
+    const stepContainer = createContainer("flex");
 
     const stepNum = document.createElement("p");
     stepNum.textContent = stepNumber;

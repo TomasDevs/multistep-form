@@ -1,3 +1,17 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* Hide arrows top and button in input type number 
+   (Chrome, Safari, Edge, Opera - Chromium)
+*/
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Hide arrows - Firefox */
+input[type=number] {
+    -moz-appearance: textfield;
+  }
