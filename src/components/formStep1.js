@@ -1,8 +1,6 @@
 import createContainer from "./createContainer"
 import createTitleHeading from "./createTitleHeading";
 import createInputWithLabel from "./createInputWithLabel";
-import createButton from "./createButton";
-import formStep2 from "./formStep2";
 
 const formStep1 = () => {
     const contentContainer = createContainer("container__content--info");
