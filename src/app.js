@@ -2,19 +2,19 @@ import formNavigation from "./components/formNavigation";
 import createContainer from "./components/createContainer";
 import createButton from "./components/createButton";
 
+let currentStep = 1;
 
 const app = async () => {
     const app = document.getElementById("app");
     const stepsContainer = createContainer("steps-container");
 
-    const loadStep = async (stepNumber) => {
+    const loadStep = async () => {
         try {
-            const moduleName = `./components/formStep${stepNumber}`
+            const moduleName = `./components/formStep${currentStep}`
             const module = await import(moduleName);
 
             const step = module.default();
      
-
             const wrapper = createContainer("wrapper flex");
             const menu = formNavigation();
         
@@ -23,26 +23,41 @@ const app = async () => {
             wrapper.innerHTML = "";
             wrapper.appendChild(menu);
             wrapper.appendChild(step);
+
             const nextButton = createButton("btn__next", "Next");
             nextButton.addEventListener("click", () => {
-                loadStep(stepNumber + 1);
+                if (currentStep < 4) {
+                    stepsContainer.innerHTML = "";
+                    currentStep++;
+                    loadStep();
+                }
             });
 
-            const previousButton = createButton("btn__next", "Go back");
+            const previousButton = createButton("btn__prev", "Go back");
             previousButton.addEventListener("click", () => {
-                loadStep(stepNumber - 1);
+                if (currentStep > 1) {
+                    stepsContainer.innerHTML = "";
+                    currentStep--;
+                    loadStep();
+                }
             });
 
-            stepsContainer.appendChild(nextButton);
-            stepsContainer.appendChild(previousButton);
+            step.appendChild(previousButton);
+            
+            if (currentStep <= 4) {
+               step.appendChild(nextButton);
+            }
 
+            if (currentStep === 4) {
+                nextButton.textContent = "Confirm";
+            }
 
         } catch (error) {
-            console.error(`Error loading step ${stepNumber}`, error)
+            console.error(`Error loading step ${currentStep}`, error)
         }
     };
 
-    loadStep(1);
+    loadStep();
 };  
 
 export default app;
