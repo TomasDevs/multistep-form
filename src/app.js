@@ -3,6 +3,7 @@ import createContainer from "./components/createContainer";
 import createButton from "./components/createButton";
 
 let currentStep = 1;
+export { currentStep };
 
 const app = async () => {
     const app = document.getElementById("app");
