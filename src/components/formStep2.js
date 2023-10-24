@@ -2,13 +2,13 @@ import createContainer from "./createContainer"
 import createTitleHeading from "./createTitleHeading";
 
 const formStep2 = () => {
-    const contentContainerPlan = createContainer("container__content--plan");
+    const contentContainer = createContainer("container__content--plan");
 
     const heading = createTitleHeading("heading-class", "paragraph-class", "Select your plan", "You have the option of monthly or yearly billing.");
 
-    contentContainerPlan.appendChild(heading);
+    contentContainer.appendChild(heading);
 
-    return contentContainerPlan;
+    return contentContainer;
 } 
 
 export default formStep2;
