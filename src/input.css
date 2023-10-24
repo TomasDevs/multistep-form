@@ -14,4 +14,8 @@ input::-webkit-inner-spin-button {
 /* Hide arrows - Firefox */
 input[type=number] {
     -moz-appearance: textfield;
-  }
+}
+
+.active {
+  background-color: #bada55;
+}
