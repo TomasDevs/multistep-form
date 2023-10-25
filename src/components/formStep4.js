@@ -2,7 +2,7 @@ import createContainer from "./createContainer"
 import createTitleHeading from "./createTitleHeading";
 
 const formStep4 = () => {
-    const contentContainer = createContainer("container__content--finish");
+    const contentContainer = createContainer("container__content");
 
     const heading = createTitleHeading("heading-class", "paragraph-class", "Finish up", "Double-check everything looks OK before confirming.");
 

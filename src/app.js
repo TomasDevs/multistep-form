@@ -16,7 +16,12 @@ const app = async () => {
             const module = await import(moduleName);
 
             const step = module.default();
-     
+
+            // Hide current element (if exist)
+            const currentStepContent = document.querySelector('.container__content');
+            if (currentStepContent) {
+                currentStepContent.style.display = 'none';
+            }
             const wrapper = createContainer("wrapper flex");
             const menu = formNavigation();
         
@@ -53,6 +58,9 @@ const app = async () => {
             if (currentStep === 4) {
                 nextButton.textContent = "Confirm";
             }
+
+            // Display new element
+            currentStepContent.style.display = 'block';
 
             // Call export funciton for toggle
             initializeToggleManager();
