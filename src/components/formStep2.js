@@ -1,7 +1,6 @@
 import createContainer from "./createContainer"
 import createTitleHeading from "./createTitleHeading";
 import createToggleOptions from "./createToggleOptions";
-import { initializeToggleManager } from './toggleManager';
 
 const formStep2 = () => {
     const contentContainer = createContainer("container__content--plan");
@@ -19,27 +18,6 @@ const formStep2 = () => {
         const card = createToggleOptions(element.className, element.title, element.description);
         formContainer.appendChild(card);
     });
-    
-    // Select one option and add/remove class active
-    // document.addEventListener("DOMContentLoaded", () => {
-    //     const toggleOptions = document.querySelectorAll(".toggle-option");
-        
-    //     // Wait for elements to load
-    //     for (const option of toggleOptions) {
-    //         option.addEventListener("click", () => {
-    //             console.log("click");
-    
-    //             toggleOptions.forEach(opt => {
-    //                 if (opt !== option) {
-    //                     opt.classList.remove("toggle-active");
-    //                     console.log("remove");
-    //                 }
-    //             });
-    //             option.classList.add("toggle-active");
-    //             console.log("add");
-    //         });
-    //     }
-    // });
     
     contentContainer.appendChild(heading);
     contentContainer.appendChild(formContainer);
