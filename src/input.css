@@ -19,3 +19,7 @@ input[type=number] {
 .active {
   background-color: #bada55;
 }
+
+.toggle-active {
+  background-color: #bada55;
+}
