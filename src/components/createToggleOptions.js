@@ -1,11 +1,20 @@
 import createContainer from "./createContainer"
 
-const createToggleOptions = (className, title) => {
+const createToggleOptions = (className, title, description) => {
     const colToggle = createContainer("col__toggle");
     const card = document.createElement("div");
     card.className = className;
-    card.textContent = title;
 
+    const titleElement = document.createElement("span");
+    titleElement.className = "title__option";
+    titleElement.textContent = title;
+
+    const descriptionElement = document.createElement("span");
+    descriptionElement.className = "description__option"; 
+    descriptionElement.textContent = description;
+
+    card.appendChild(titleElement);
+    card.appendChild(descriptionElement);
     colToggle.appendChild(card);
 
     return colToggle;
