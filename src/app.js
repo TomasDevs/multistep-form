@@ -1,6 +1,7 @@
 import formNavigation from "./components/formNavigation";
 import createContainer from "./components/createContainer";
 import createButton from "./components/createButton";
+import { initializeToggleManager } from './components/toggleManager';
 
 let currentStep = 1;
 export { currentStep };
@@ -52,6 +53,9 @@ const app = async () => {
             if (currentStep === 4) {
                 nextButton.textContent = "Confirm";
             }
+
+            // Call export funciton for toggle
+            initializeToggleManager();
 
         } catch (error) {
             console.error(`Error loading step ${currentStep}`, error)
