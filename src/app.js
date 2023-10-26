@@ -1,76 +1,82 @@
-import formNavigation from "./components/formNavigation";
 import createContainer from "./components/createContainer";
+import formNavigation from "./components/formNavigation";
 import createButton from "./components/createButton";
+import formStep1 from "./components/formStep1";
+import formStep2 from "./components/formStep2";
+import formStep3 from "./components/formStep3";
+import formStep4 from "./components/formStep4";
 import { initializeToggleManager } from './components/toggleManager';
 
 let currentStep = 1;
-export { currentStep };
+let navigation;
 
-const app = async () => {
+const app = () => {
     const app = document.getElementById("app");
     const stepsContainer = createContainer("steps-container");
+    
+    const steps = [formStep1(), formStep2(), formStep3(), formStep4()];
 
-    const loadStep = async () => {
-        try {
-            const moduleName = `./components/formStep${currentStep}`
-            const module = await import(moduleName);
+    const wrapper = createContainer("wrapper flex");
+    navigation = formNavigation(currentStep, updateStep);
 
-            const step = module.default();
+    app.appendChild(stepsContainer);
+    stepsContainer.appendChild(wrapper);
+    if (navigation) {
+        wrapper.appendChild(navigation);
+    }
 
-            // Hide current element (if exist)
-            const currentStepContent = document.querySelector('.container__content');
-            if (currentStepContent) {
-                currentStepContent.style.display = 'none';
-            }
-            const wrapper = createContainer("wrapper flex");
-            const menu = formNavigation();
-        
-            app.appendChild(stepsContainer);
-            stepsContainer.appendChild(wrapper);
-            wrapper.innerHTML = "";
-            wrapper.appendChild(menu);
-            wrapper.appendChild(step);
+    const nextButton = createButton("btn__next", "Next");
+    const previousButton = createButton("btn__prev", "Go back");
 
-            const nextButton = createButton("btn__next", "Next");
-            nextButton.addEventListener("click", () => {
-                if (currentStep < 4) {
-                    stepsContainer.innerHTML = "";
-                    currentStep++;
-                    loadStep();
-                }
-            });
+    for (let i = 0; i < steps.length; i++) {
+        const step = steps[i];
+        step.style.display = "none";
+        wrapper.appendChild(step);
 
-            const previousButton = createButton("btn__prev", "Go back");
-            previousButton.addEventListener("click", () => {
-                if (currentStep > 1) {
-                    stepsContainer.innerHTML = "";
-                    currentStep--;
-                    loadStep();
-                }
-            });
-
-            step.appendChild(previousButton);
-            
-            if (currentStep <= 4) {
-               step.appendChild(nextButton);
-            }
-
-            if (currentStep === 4) {
-                nextButton.textContent = "Confirm";
-            }
-
-            // Display new element
-            currentStepContent.style.display = 'block';
-
-            // Call export funciton for toggle
-            initializeToggleManager();
-
-        } catch (error) {
-            console.error(`Error loading step ${currentStep}`, error)
+        if (i === 0) {
+            step.style.display = "block";
         }
-    };
 
-    loadStep();
-};  
+        const stepPreviousButton = previousButton.cloneNode(true);
+        stepPreviousButton.addEventListener("click", () => {
+            if (currentStep > 1) {
+                steps[currentStep - 1].style.display = "none"; // Hide current step
+                currentStep--;
+                steps[currentStep - 1].style.display = "block"; // Show previous step
+                updateStep(currentStep);
+            }
+        });
+        step.appendChild(stepPreviousButton);
+
+        const stepNextButton = nextButton.cloneNode(true);
+        stepNextButton.addEventListener("click", () => {
+            if (currentStep < 4) {
+                steps[currentStep - 1].style.display = "none"; // Hide current step
+                currentStep++;
+                steps[currentStep - 1].style.display = "block"; // Show next step
+                updateStep(currentStep);
+            }
+        });
+
+        step.appendChild(stepNextButton);
+    }
+
+    initializeToggleManager();
+
+    // Update class "active" in navigation
+    function updateStep(step) {
+        currentStep = step;
+        navigation.innerHTML = ''; // clean navigation;
+        navigation.appendChild(formNavigation(currentStep, updateStep));
+
+        steps.forEach((stepComponent, index) => {
+            if (index === currentStep - 1) {
+                stepComponent.style.display = "block";
+            } else {
+                stepComponent.style.display = "none";
+            }
+        });
+    }
+};
 
 export default app;
