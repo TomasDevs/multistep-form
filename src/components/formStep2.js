@@ -3,7 +3,8 @@ import createTitleHeading from "./createTitleHeading";
 import createToggleOptions from "./createToggleOptions";
 
 const formStep2 = () => {
-    const contentContainer = createContainer("container__content");
+    const contentContainer = createContainer("container__content--plan");
+    contentContainer.style.display = "none";
 
     const heading = createTitleHeading("heading-class", "paragraph-class", "Select your plan", "You have the option of monthly or yearly billing.");
 
