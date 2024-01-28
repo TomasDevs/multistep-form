@@ -1,9 +1,13 @@
 import createContainer from "./createContainer";
 
-const createToggleOptions = (className, title, description, onClick) => {
-  const colToggle = createContainer("col__toggle");
+const createMultiSelectOptions = (className, title, description, onClick) => {
+  const colToggle = createContainer("col__multi-select");
   const card = document.createElement("div");
   card.className = className;
+
+  const checkbox = document.createElement("input");
+  checkbox.type = "checkbox";
+  checkbox.className = "checkbox__option";
 
   const titleElement = document.createElement("span");
   titleElement.className = "title__option";
@@ -14,8 +18,11 @@ const createToggleOptions = (className, title, description, onClick) => {
   descriptionElement.textContent = description;
 
   // Adding a click event listener that updates the global state
-  card.addEventListener("click", () => onClick(title));
+  checkbox.addEventListener("change", (event) => {
+    onClick(title, event.target.checked);
+  });
 
+  card.appendChild(checkbox);
   card.appendChild(titleElement);
   card.appendChild(descriptionElement);
   colToggle.appendChild(card);
@@ -23,4 +30,4 @@ const createToggleOptions = (className, title, description, onClick) => {
   return colToggle;
 };
 
-export default createToggleOptions;
+export default createMultiSelectOptions;
