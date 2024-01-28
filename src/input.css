@@ -12,12 +12,14 @@ input::-webkit-inner-spin-button {
 }
 
 /* Hide arrows - Firefox */
-input[type=number] {
-    -moz-appearance: textfield;
+input[type="number"] {
+  -moz-appearance: textfield;
 }
 
-.active {
+.active .step__number {
   background-color: #bada55;
+  color: rgb(74 4 78);
+  border-color: #bada55;
 }
 
 .toggle-active {

@@ -8,7 +8,9 @@ const formNavigation = (currentStep, updateStep) => {
   const contentStep3 = document.querySelector(".container__content--add");
   const contentStep4 = document.querySelector(".container__content--summary");
 
-  const containerNav = createContainer("container__step");
+  const containerNav = createContainer(
+    "container__step flex flex-col justify-start gap-6 p-10 bg-fuchsia-950 text-white rounded-lg"
+  );
   const stepOne = createFormStep("1", "Step 1", "Your Info");
   const stepTwo = createFormStep("2", "Step 2", "Select Plan");
   const stepThree = createFormStep("3", "Step 3", "Add-ons");

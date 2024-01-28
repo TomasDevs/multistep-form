@@ -14,12 +14,12 @@ let navigation;
 const app = () => {
   const app = document.getElementById("app");
   const stepsContainer = createContainer(
-    "steps-container flex items-center justify-center"
+    "steps-container flex items-center justify-center w-screen h-screen bg-amber-100"
   );
 
   const steps = [formStep1(), formStep2(), formStep3(), formStep4()];
 
-  const wrapper = createContainer("wrapper flex");
+  const wrapper = createContainer("wrapper flex gap-16 bg-white rounded-lg");
   navigation = formNavigation(currentStep, updateStep);
 
   app.appendChild(stepsContainer);
