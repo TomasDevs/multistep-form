@@ -4,12 +4,12 @@ import createTitleHeading from "./createTitleHeading";
 import createMultiSelectOptions from "./createMultiSelectOptions";
 
 const formStep3 = () => {
-  const contentContainer = createContainer("container__content--add");
+  const contentContainer = createContainer("container__content--add p-10");
   contentContainer.style.display = "none";
 
   const heading = createTitleHeading(
-    "heading-class",
-    "paragraph-class",
+    "heading-class text-3xl font-bold text-indigo-900 mb-2",
+    "paragraph-class text-gray-600 mb-4",
     "Pick add-ons",
     "Add-ons help enhance your gaming experience."
   );

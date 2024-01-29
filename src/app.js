@@ -14,12 +14,14 @@ let navigation;
 const app = () => {
   const app = document.getElementById("app");
   const stepsContainer = createContainer(
-    "steps-container flex items-center justify-center w-screen h-screen bg-amber-100"
+    "steps-container flex items-center justify-center w-screen h-screen bg-slate-100"
   );
 
   const steps = [formStep1(), formStep2(), formStep3(), formStep4()];
 
-  const wrapper = createContainer("wrapper flex gap-16 bg-white rounded-lg");
+  const wrapper = createContainer(
+    "wrapper flex gap-16 max-w-[940px] w-full bg-white rounded-lg"
+  );
   navigation = formNavigation(currentStep, updateStep);
 
   app.appendChild(stepsContainer);
@@ -28,13 +30,23 @@ const app = () => {
     wrapper.appendChild(navigation);
   }
 
-  const nextButton = createButton("btn__next", "Next");
-  const previousButton = createButton("btn__prev", "Go back");
-  const confirmButton = createButton("btn__confirm", "Confirm");
+  const nextButton = createButton(
+    "btn__next py-3 px-5 bg-indigo-900 font-semibold text-white rounded-md transition hover:bg-indigo-950",
+    "Next step"
+  );
+  const previousButton = createButton(
+    "btn__prev text-gray-600 font-semibold",
+    "Go back"
+  );
+  const confirmButton = createButton(
+    "btn__confirm py-3 px-5 bg-fuchsia-900 font-semibold text-white rounded-md transition hover:bg-fuchsia-950",
+    "Confirm"
+  );
 
   steps.forEach((step, index) => {
     step.style.display = "none";
     wrapper.appendChild(step);
+    const buttonWrapper = createContainer("wrapper__btn flex justify-between");
 
     const stepPreviousButton = previousButton.cloneNode(true);
     stepPreviousButton.addEventListener("click", () => {
@@ -42,20 +54,23 @@ const app = () => {
         updateStep(currentStep - 1);
       }
     });
+    buttonWrapper.appendChild(stepPreviousButton);
 
     if (index === steps.length - 1) {
+      // V posledním kroku přidáme tlačítko "Confirm"
       const stepConfirmButton = confirmButton.cloneNode(true);
       stepConfirmButton.addEventListener("click", handleConfirmClick);
-      step.appendChild(stepPreviousButton);
-      step.appendChild(stepConfirmButton);
+      buttonWrapper.appendChild(stepConfirmButton);
     } else {
+      // V ostatních krocích přidáme tlačítko "Next step"
       const stepNextButton = nextButton.cloneNode(true);
       stepNextButton.addEventListener("click", () =>
         updateStep(currentStep + 1)
       );
-      step.appendChild(stepPreviousButton);
-      step.appendChild(stepNextButton);
+      buttonWrapper.appendChild(stepNextButton);
     }
+
+    step.appendChild(buttonWrapper);
   });
 
   updateStep(1);
@@ -75,28 +90,33 @@ const app = () => {
       stepComponent.style.display = isVisible ? "block" : "none";
 
       if (isVisible) {
-        const buttons = stepComponent.querySelectorAll(
-          ".btn__prev, .btn__next, .btn__confirm"
-        );
-        buttons.forEach((button) => button.remove());
+        let buttonWrapper = stepComponent.querySelector(".wrapper__btn");
+        if (!buttonWrapper) {
+          buttonWrapper = createContainer("wrapper__btn flex justify-between");
+          stepComponent.appendChild(buttonWrapper);
+        }
 
+        const existingButtons = buttonWrapper.querySelectorAll("button");
+        existingButtons.forEach((btn) => btn.remove());
+
+        // Add button "Go back"
         const goBackButton = previousButton.cloneNode(true);
         goBackButton.addEventListener("click", () => {
           if (currentStep > 1) updateStep(currentStep - 1);
         });
-        stepComponent.appendChild(goBackButton);
+        buttonWrapper.appendChild(goBackButton);
 
-        // If it is the last step, add "Confirm", otherwise "Next"
-        if (currentStep === 4) {
+        // According to current step add button "Next step" or "Confirm"
+        if (index === steps.length - 1) {
           const confirmButtonNew = confirmButton.cloneNode(true);
           confirmButtonNew.addEventListener("click", handleConfirmClick);
-          stepComponent.appendChild(confirmButtonNew);
+          buttonWrapper.appendChild(confirmButtonNew);
         } else {
           const nextButtonNew = nextButton.cloneNode(true);
-          nextButtonNew.addEventListener("click", () => {
-            if (currentStep < steps.length) updateStep(currentStep + 1);
-          });
-          stepComponent.appendChild(nextButtonNew);
+          nextButtonNew.addEventListener("click", () =>
+            updateStep(currentStep + 1)
+          );
+          buttonWrapper.appendChild(nextButtonNew);
         }
       }
     });

@@ -4,12 +4,12 @@ import createTitleHeading from "./createTitleHeading";
 import createInputWithLabel from "./createInputWithLabel";
 
 const formStep1 = () => {
-  const contentContainer = createContainer("container__content--info");
+  const contentContainer = createContainer("container__content--info p-10");
   contentContainer.style.display = "block";
 
   const heading = createTitleHeading(
-    "heading-class",
-    "paragraph-class",
+    "heading-class text-3xl font-bold text-indigo-900 mb-2",
+    "paragraph-class text-gray-600 mb-4",
     "Personal info",
     "Please provide your name, email address, and phone number."
   );

@@ -5,14 +5,14 @@ import createTitleHeading from "./createTitleHeading";
 const formStep4 = () => {
   let contentContainer = document.querySelector(".container__content--summary");
   if (!contentContainer) {
-    contentContainer = createContainer("container__content--summary");
+    contentContainer = createContainer("container__content--summary p-10");
   } else {
     contentContainer.innerHTML = "";
   }
 
   const heading = createTitleHeading(
-    "heading-class",
-    "paragraph-class",
+    "heading-class text-3xl font-bold text-indigo-900 mb-2",
+    "paragraph-class text-gray-600 mb-4",
     "Finish up",
     "Double-check everything looks OK before confirming."
   );
