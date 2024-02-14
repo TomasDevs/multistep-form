@@ -23,23 +23,23 @@ const formStep4 = () => {
 
   const userInfo = document.createElement("div");
   userInfo.innerHTML = `
-    <p class="p-2 pt-4 px-4 bg-gray-100 border-b-2">Name: ${
+    <p class="p-2 pt-4 px-4 bg-gray-100 border-b-2"><span class="font-bold">Name:</span> ${
       userData.name || ""
     }</p>
-    <p class="p-2 px-4 bg-gray-100 border-b-2">Email: ${
+    <p class="p-2 px-4 bg-gray-100 border-b-2"><span class="font-bold">Email:</span> ${
       userData.email || ""
     }</p>
-    <p class="p-2 px-4 bg-gray-100 border-b-2">Phone: ${
+    <p class="p-2 px-4 bg-gray-100 border-b-2"><span class="font-bold">Phone:</span> ${
       userData.phone || ""
     }</p>
   `;
   const planInfo = document.createElement("div");
-  planInfo.innerHTML = `<p class="p-2 px-4 bg-gray-100 border-b-2">Selected Plan: ${
+  planInfo.innerHTML = `<p class="p-2 px-4 bg-gray-100 border-b-2"><span class="font-bold">Selected Plan:</span> ${
     planSelection || "Not selected"
   }</p>`;
 
   const optionsInfo = document.createElement("div");
-  optionsInfo.innerHTML = `<p class="p-2 px-4 pb-4 mb-4 bg-gray-100 border-b-2">Selected Options: ${
+  optionsInfo.innerHTML = `<p class="p-2 px-4 pb-4 mb-4 bg-gray-100 border-b-2"><span class="font-bold">Selected Options:</span> ${
     optionSelections.length > 0 ? optionSelections.join(", ") : "None"
   }</p>`;
 

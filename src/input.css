@@ -16,6 +16,10 @@ input[type="number"] {
   -moz-appearance: textfield;
 }
 
+.container__content--info .wrapper__btn {
+  justify-content: flex-end;
+}
+
 .active .step__number {
   background-color: #bada55;
   color: rgb(74 4 78);
@@ -23,6 +27,11 @@ input[type="number"] {
 }
 
 .toggle-active {
+  background-color: #eaeaea;
+  border-color: #4a044e;
+}
+
+.selected-option {
   background-color: #eaeaea;
   border-color: #4a044e;
 }
