@@ -99,12 +99,14 @@ const app = () => {
         const existingButtons = buttonWrapper.querySelectorAll("button");
         existingButtons.forEach((btn) => btn.remove());
 
-        // Add button "Go back"
-        const goBackButton = previousButton.cloneNode(true);
-        goBackButton.addEventListener("click", () => {
-          if (currentStep > 1) updateStep(currentStep - 1);
-        });
-        buttonWrapper.appendChild(goBackButton);
+        // Add button "Go back" only if currentStep is not 1
+        if (currentStep > 1) {
+          const goBackButton = previousButton.cloneNode(true);
+          goBackButton.addEventListener("click", () => {
+            if (currentStep > 1) updateStep(currentStep - 1);
+          });
+          buttonWrapper.appendChild(goBackButton);
+        }
 
         // According to current step add button "Next step" or "Confirm"
         if (index === steps.length - 1) {
