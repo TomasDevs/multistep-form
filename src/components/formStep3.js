@@ -16,19 +16,22 @@ const formStep3 = () => {
 
   const multiSelectElements = [
     {
-      className: "multi-select-option cursor-pointer z-10",
-      title: "Option 1",
-      description: "Description 1",
+      className:
+        "multi-select-option flex flex-col py-2 px-5 mb-5 border-2 rounded cursor-pointer z-10",
+      title: "Online service",
+      description: "Access to mutltiplayer games",
     },
     {
-      className: "multi-select-option cursor-pointer z-10",
-      title: "Option 2",
-      description: "Description 2",
+      className:
+        "multi-select-option flex flex-col py-2 px-5 mb-5 border-2 rounded cursor-pointer z-10",
+      title: "Large storage",
+      description: "Extra 1TB storage",
     },
     {
-      className: "multi-select-option cursor-pointer z-10",
-      title: "Option 3",
-      description: "Description 3",
+      className:
+        "multi-select-option flex flex-col py-2 px-5 mb-5 border-2 rounded cursor-pointer z-10",
+      title: "Customizable profile",
+      description: "Custom there your profile",
     },
   ];
 

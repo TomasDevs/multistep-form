@@ -16,17 +16,20 @@ const formStep2 = () => {
 
   const toggleElements = [
     {
-      className: "toggle-option cursor-pointer z-10",
+      className:
+        "toggle-option flex flex-col py-2 px-5 mb-5 border-2 rounded cursor-pointer z-10",
       title: "Basic",
       description: "$10/mo",
     },
     {
-      className: "toggle-option cursor-pointer z-10",
+      className:
+        "toggle-option flex flex-col py-2 px-5 mb-5 border-2 rounded cursor-pointer z-10",
       title: "Advanced",
       description: "$12/mo",
     },
     {
-      className: "toggle-option cursor-pointer z-10",
+      className:
+        "toggle-option flex flex-col py-2 px-5 mb-5 border-2 rounded cursor-pointer z-10",
       title: "Pro",
       description: "$16/mo",
     },

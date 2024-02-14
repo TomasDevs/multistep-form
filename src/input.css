@@ -23,5 +23,6 @@ input[type="number"] {
 }
 
 .toggle-active {
-  background-color: #bada55;
+  background-color: #eaeaea;
+  border-color: #4a044e;
 }

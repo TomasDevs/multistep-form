@@ -136,7 +136,7 @@ const app = () => {
   function handleConfirmClick() {
     // Show a confirmation modal window
     const dialog = document.createElement("dialog");
-    dialog.textContent = "Sent";
+    dialog.innerHTML = `<p class="py-12 px-16 bg-gray-100 font-bold text-4xl">Sent</p>`;
     document.body.appendChild(dialog);
     dialog.showModal();
 

@@ -23,17 +23,25 @@ const formStep4 = () => {
 
   const userInfo = document.createElement("div");
   userInfo.innerHTML = `
-    <p>Name: ${userData.name}</p>
-    <p>Email: ${userData.email || ""}</p>
-    <p>Phone: ${userData.phone || ""}</p>
+    <p class="p-2 pt-4 px-4 bg-gray-100 border-b-2">Name: ${
+      userData.name || ""
+    }</p>
+    <p class="p-2 px-4 bg-gray-100 border-b-2">Email: ${
+      userData.email || ""
+    }</p>
+    <p class="p-2 px-4 bg-gray-100 border-b-2">Phone: ${
+      userData.phone || ""
+    }</p>
   `;
-  const planInfo = document.createElement("p");
-  planInfo.textContent = `Selected Plan: ${planSelection || "Not selected"}`;
+  const planInfo = document.createElement("div");
+  planInfo.innerHTML = `<p class="p-2 px-4 bg-gray-100 border-b-2">Selected Plan: ${
+    planSelection || "Not selected"
+  }</p>`;
 
-  const optionsInfo = document.createElement("p");
-  optionsInfo.textContent = `Selected Options: ${
+  const optionsInfo = document.createElement("div");
+  optionsInfo.innerHTML = `<p class="p-2 px-4 pb-4 mb-4 bg-gray-100 border-b-2">Selected Options: ${
     optionSelections.length > 0 ? optionSelections.join(", ") : "None"
-  }`;
+  }</p>`;
 
   contentContainer.appendChild(heading);
   contentContainer.appendChild(userInfo);
